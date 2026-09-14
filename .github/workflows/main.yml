@@ -124,31 +124,6 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - run: wasm-pack test --node
-      - run: wasm-pack test --node crates/rx-leptos
-
-  test-leptos:
-    name: rx-leptos (stable)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          components: clippy
-          targets: wasm32-unknown-unknown
-      - uses: Swatinem/rust-cache@v2
-      - run: cargo clippy -p rx-leptos -p leptos-csr-example --all-targets -- -D warnings
-      - run: cargo test -p rx-leptos -p leptos-csr-example
-      - run: cargo check -p leptos-csr-example --target wasm32-unknown-unknown
-      # The SSR example is its own workspace (Leptos csr/ssr features must not unify).
-      - name: SSR example (server)
-        working-directory: examples/leptos-ssr
-        run: |
-          cargo clippy --features ssr --all-targets -- -D warnings
-          cargo test --features ssr --test ssr
-          cargo test --test model
-      - name: SSR example (hydrate, wasm32)
-        working-directory: examples/leptos-ssr
-        run: cargo clippy --features hydrate --lib --target wasm32-unknown-unknown -- -D warnings
 
   ci:
     name: CI Status
@@ -163,7 +138,6 @@ jobs:
         test,
         test-nightly,
         test-wasm,
-        test-leptos,
       ]
     if: always()
     steps:
@@ -176,8 +150,7 @@ jobs:
              [ "${{ needs.check-nightly.result }}" != "success" ] || \
              [ "${{ needs.test.result }}" != "success" ] || \
              [ "${{ needs.test-nightly.result }}" != "success" ] || \
-             [ "${{ needs.test-wasm.result }}" != "success" ] || \
-             [ "${{ needs.test-leptos.result }}" != "success" ]; then
+             [ "${{ needs.test-wasm.result }}" != "success" ]; then
             echo "CI failed"
             exit 1
           fi

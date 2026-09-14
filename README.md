@@ -121,29 +121,10 @@ Runnable programs under `examples/` that show rxRust in real systems; each carri
 
 ## 🍃 Leptos
 
-[`crates/rx-leptos`](crates/rx-leptos) bridges observables and Leptos 0.8 signals
-(via `reactive_graph`): `from_signal` mirrors a signal or memo as an observable,
-`to_signal` / `use_observable` turn an observable into a read signal that is
-unsubscribed when its reactive owner is cleaned up, and `from_event` (wasm)
-streams DOM events, and `use_subject` / `use_subscription` tie subjects and
-subscriptions to a component's lifetime. Signal changes are delivered on the
-app executor's next tick, exactly when a Leptos effect would run. [`examples/leptos-csr`](examples/leptos-csr)
-is a runnable client-side app (typeahead with cancellation, stopwatch, mouse
-tracker) whose reactive models are tested natively, and
-[`examples/leptos-ssr`](examples/leptos-ssr) is the same app server-rendered
-and hydrated with `cargo leptos`, showing the one SSR rule: create signals at
-component level, wire rx pipelines inside `Effect::new`.
-
-```rust,ignore
-let query = RwSignal::new(String::new());
-let results = to_signal(
-  from_signal(query)
-    .debounce(Duration::from_millis(300))
-    .distinct_until_changed()
-    .switch_map(|q| search(q)),
-  Vec::new(),
-);
-```
+Bridges to Leptos 0.8 signals live in their own crate and repository,
+[Dev916/rx-leptos](https://github.com/Dev916/rx-leptos): `from_signal`,
+`to_signal`, `use_subject`, `from_event`, `animation_frames`, `from_fetch`, and
+runnable CSR and SSR example apps.
 
 ## 🌙 Nightly (Experimental)
 
