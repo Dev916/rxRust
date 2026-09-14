@@ -53,4 +53,4 @@
 # - github.org
 # - github.repo
 
-sync.remote: "git+ssh://git@github.com/nyvorin/rxRust.git"
+sync.remote: "git+ssh://git@github.com/Dev916/rxRust.git"
