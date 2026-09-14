@@ -77,6 +77,8 @@ use crate::ops::{
   find::{Find, FindIndex},
   flat_map::FlatMap,
   group_by::GroupBy,
+  group_by::GroupedObservable,
+  group_by_with::GroupByWith,
   ignore_elements::IgnoreElements,
   into_future::{ObservableFutureOf, SupportsIntoFuture},
   into_stream::SupportsIntoStream,
@@ -1346,6 +1348,75 @@ pub trait Observable: Context {
     Key: std::hash::Hash + Eq + Clone,
   {
     self.transform(|source| GroupBy::new(source, key_selector))
+  }
+
+  /// Group items by key, closing a group when the observable `duration`
+  /// returns for it emits or completes (RxJS `groupBy` with `duration`)
+  ///
+  /// The duration selector receives the group itself, so a group can end on
+  /// its own stream: its first emission or its completion closes the group
+  /// (`group.take(2).ignore_elements()`, `group.debounce(..)`). After a
+  /// group closes, the next item with that key opens a new one. Groups are
+  /// publish subjects; see [`group_by_connector`](Self::group_by_connector)
+  /// for other subjects.
+  ///
+  /// # Examples
+  ///
+  /// ```rust
+  /// use std::{cell::RefCell, rc::Rc};
+  ///
+  /// use rxrust::prelude::*;
+  ///
+  /// let batches = Rc::new(RefCell::new(Vec::new()));
+  /// let sink = batches.clone();
+  /// Local::from_iter(vec![1, 3, 5, 7, 9])
+  ///   .group_by_with_duration(|_v: &i32| 0, |group: Local<_>| group.take(2).ignore_elements())
+  ///   .subscribe(move |group: Local<_>| {
+  ///     let sink = sink.clone();
+  ///     group
+  ///       .to_vec()
+  ///       .subscribe(move |batch| sink.borrow_mut().push(batch));
+  ///   });
+  /// assert_eq!(*batches.borrow(), vec![vec![1, 3], vec![5, 7], vec![9]]);
+  /// ```
+  #[allow(clippy::type_complexity)]
+  #[doc(alias = "groupBy")]
+  fn group_by_with_duration<'a, F, Key, D, Out>(
+    self, key_selector: F, duration: D,
+  ) -> Self::With<
+    GroupByWith<
+      Self::Inner,
+      F,
+      PublishConnector<PublishSubjectOf<'a, Self>>,
+      D,
+      WindowSubjectOf<'a, Self>,
+    >,
+  >
+  where
+    F: for<'b> FnMut(&Self::Item<'b>) -> Key,
+    Key: std::hash::Hash + Eq + Clone,
+    D: FnMut(Self::With<GroupedObservable<Key, PublishSubjectOf<'a, Self>>>) -> Out,
+    Out: Context<Inner: ObservableType>,
+  {
+    self.group_by_connector(key_selector, PublishConnector::default(), duration)
+  }
+
+  /// [`group_by_with_duration`](Self::group_by_with_duration) with the
+  /// subject for each group created by `connector` (RxJS `groupBy` with
+  /// `connector` and `duration`), for instance a [`ReplayConnector`] so late
+  /// subscribers to a group see its earlier items
+  #[allow(clippy::type_complexity)]
+  fn group_by_connector<'a, F, Key, Conn, D, Out>(
+    self, key_selector: F, connector: Conn, duration: D,
+  ) -> Self::With<GroupByWith<Self::Inner, F, Conn, D, Self::With<Conn::Subject>>>
+  where
+    F: for<'b> FnMut(&Self::Item<'b>) -> Key,
+    Key: std::hash::Hash + Eq + Clone,
+    Conn: Connector,
+    D: FnMut(Self::With<GroupedObservable<Key, Conn::Subject>>) -> Out,
+    Out: Context<Inner: ObservableType>,
+  {
+    self.transform(|source| GroupByWith::new(source, key_selector, connector, duration))
   }
 
   /// Split the source observable into multiple GroupedObservables for mutable

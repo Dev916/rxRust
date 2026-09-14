@@ -64,6 +64,7 @@ Operators that transform the items emitted by an Observable.
 | `buffer_time` | Collects items into a `Vec` for a specific duration. |
 | `pairwise` | Groups consecutive emissions into pairs `(prev, current)`. |
 | `group_by` | Divides an Observable into a set of Observables that each emit a different group of items. |
+| `group_by_with_duration` / `group_by_connector` | `group_by` whose groups close when a per-group duration Observable emits or completes, optionally with a custom subject per group. |
 | `window` / `window_count` / `window_time` | Splits the source into windows, each an Observable of its own. |
 | `window_when` / `window_toggle` | Windows closed by selector-provided Observables; `window_toggle` windows may overlap. |
 | `buffer_when` / `buffer_toggle` | Buffers closed by selector-provided Observables; `buffer_toggle` buffers may overlap. |

@@ -50,6 +50,7 @@ Operators that transform items that are emitted by an Observable.
   - implemented as `merge_all` (flatten) or `map(...).merge_all(...)`
   - [x] ExhaustMap — ignore outer items while an inner Observable is active (`exhaust_map`)
 - [x] GroupBy — divide an Observable into a set of Observables that each emit a different group of items from the original Observable, organized by key
+  - `group_by(key)`, `group_by_with_duration(key, duration)`, `group_by_connector(key, connector, duration)` (RxJS `duration` / `connector` options)
 - [x] Partition — split an Observable into the items matching a predicate and the rest (`partition`)
 - [x] Map — transform the items emitted by an Observable by applying a function to each item
 - [x] Scan — apply a function to each item emitted by an Observable, sequentially, and emit each successive value
