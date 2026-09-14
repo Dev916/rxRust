@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789419359187,
+  "lastUpdate": 1789419616706,
   "repoUrl": "https://github.com/Dev916/rxRust",
   "entries": {
     "rxRust operators": [
@@ -65,6 +65,72 @@ window.BENCHMARK_DATA = {
             "name": "subject_broadcast_ten_subscribers",
             "value": 11812,
             "range": "± 843",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "nyvorin@gmail.com",
+            "name": "Nyvorin",
+            "username": "nyvorin"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2c0b81127cac4080a9660433e6fa461b75002a8a",
+          "message": "Merge pull request #18 from Dev916/chore/extract-rx-leptos\n\nchore: move rx-leptos and the Leptos examples to Dev916/rx-leptos",
+          "timestamp": "2026-09-14T16:59:55-04:00",
+          "tree_id": "aad002d015c462834df3ac1c35eb3429660e684f",
+          "url": "https://github.com/Dev916/rxRust/commit/2c0b81127cac4080a9660433e6fa461b75002a8a"
+        },
+        "date": 1789419615994,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "local_collect_to_vec",
+            "value": 1031,
+            "range": "± 54",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_flat_map_small_inners",
+            "value": 5008,
+            "range": "± 177",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_map_filter",
+            "value": 1063,
+            "range": "± 12",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_merge_two_sources",
+            "value": 2143,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_scan_take",
+            "value": 359,
+            "range": "± 7",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "shared_map_filter",
+            "value": 1865,
+            "range": "± 23",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "subject_broadcast_ten_subscribers",
+            "value": 18979,
+            "range": "± 76",
             "unit": "ns/iter"
           }
         ]
