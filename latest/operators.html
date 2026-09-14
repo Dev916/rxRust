@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-27924699.js";
+            window.path_to_searchindex_js = "searchindex-52b1a3b7.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-0ee8fd1e.js"></script>
@@ -243,6 +243,7 @@
 <tr><td style="text-align: left"><code>buffer_time</code></td><td style="text-align: left">Collects items into a <code>Vec</code> for a specific duration.</td></tr>
 <tr><td style="text-align: left"><code>pairwise</code></td><td style="text-align: left">Groups consecutive emissions into pairs <code>(prev, current)</code>.</td></tr>
 <tr><td style="text-align: left"><code>group_by</code></td><td style="text-align: left">Divides an Observable into a set of Observables that each emit a different group of items.</td></tr>
+<tr><td style="text-align: left"><code>group_by_with_duration</code> / <code>group_by_connector</code></td><td style="text-align: left"><code>group_by</code> whose groups close when a per-group duration Observable emits or completes, optionally with a custom subject per group.</td></tr>
 <tr><td style="text-align: left"><code>window</code> / <code>window_count</code> / <code>window_time</code></td><td style="text-align: left">Splits the source into windows, each an Observable of its own.</td></tr>
 <tr><td style="text-align: left"><code>window_when</code> / <code>window_toggle</code></td><td style="text-align: left">Windows closed by selector-provided Observables; <code>window_toggle</code> windows may overlap.</td></tr>
 <tr><td style="text-align: left"><code>buffer_when</code> / <code>buffer_toggle</code></td><td style="text-align: left">Buffers closed by selector-provided Observables; <code>buffer_toggle</code> buffers may overlap.</td></tr>
