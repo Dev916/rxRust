@@ -223,5 +223,5 @@ Specialty Observables that have more precisely-controlled subscription dynamics
 
 - [ ] CI
   - [x] Unit test coverage report.
-  - [ ] Benchmark to measure performance for every commit.
+  - [x] Benchmark to measure performance for every commit (`cargo bench`, tracked by github-action-benchmark on the `benchmarks` branch).
   - [ ] Real-life representative algorithms implemented to measure performance.

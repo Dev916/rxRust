@@ -67,3 +67,7 @@ members = ["crates/rx-leptos", "examples/leptos-csr"]
 # Leptos `csr` and `ssr` features must not unify, so the SSR example is its
 # own workspace (build it from its directory).
 exclude = ["examples/leptos-ssr"]
+
+[[bench]]
+name = "operators"
+harness = false
