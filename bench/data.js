@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789419616706,
+  "lastUpdate": 1790273708980,
   "repoUrl": "https://github.com/Dev916/rxRust",
   "entries": {
     "rxRust operators": [
@@ -131,6 +131,72 @@ window.BENCHMARK_DATA = {
             "name": "subject_broadcast_ten_subscribers",
             "value": 18979,
             "range": "± 76",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "webmech@gmail.com",
+            "name": "web-mech",
+            "username": "nyvorin"
+          },
+          "committer": {
+            "email": "webmech@gmail.com",
+            "name": "web-mech",
+            "username": "nyvorin"
+          },
+          "distinct": true,
+          "id": "69fd166f8fbbe9d124263a43a5c62e320452d724",
+          "message": "chore(beads): sync issue tracker state\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01HZvqSeEXabgPF9ygvc6wAf",
+          "timestamp": "2026-09-24T14:13:53-04:00",
+          "tree_id": "a957bf8cc832953d8b74ef4843583fd813c10f70",
+          "url": "https://github.com/Dev916/rxRust/commit/69fd166f8fbbe9d124263a43a5c62e320452d724"
+        },
+        "date": 1790273707953,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "local_collect_to_vec",
+            "value": 834,
+            "range": "± 20",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_flat_map_small_inners",
+            "value": 5165,
+            "range": "± 67",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_map_filter",
+            "value": 896,
+            "range": "± 4",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_merge_two_sources",
+            "value": 3991,
+            "range": "± 132",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_scan_take",
+            "value": 297,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "shared_map_filter",
+            "value": 4926,
+            "range": "± 704",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "subject_broadcast_ten_subscribers",
+            "value": 15306,
+            "range": "± 224",
             "unit": "ns/iter"
           }
         ]
