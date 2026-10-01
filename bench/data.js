@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1790273708980,
+  "lastUpdate": 1790861692922,
   "repoUrl": "https://github.com/Dev916/rxRust",
   "entries": {
     "rxRust operators": [
@@ -197,6 +197,72 @@ window.BENCHMARK_DATA = {
             "name": "subject_broadcast_ten_subscribers",
             "value": 15306,
             "range": "± 224",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "nyvorin@gmail.com",
+            "name": "Nyvorin",
+            "username": "nyvorin"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a2c2f0f6250aefcdcc0e6de810d4b60b39ecfdd9",
+          "message": "Merge pull request #19 from Dev916/chore/sync-upstream\n\nchore: sync with upstream master (BehaviorSubject fix, pinned toolchain, CI rework)",
+          "timestamp": "2026-10-01T09:34:02-04:00",
+          "tree_id": "4676884884e4f503ca2853bd1eea33d49cef2b8b",
+          "url": "https://github.com/Dev916/rxRust/commit/a2c2f0f6250aefcdcc0e6de810d4b60b39ecfdd9"
+        },
+        "date": 1790861692487,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "local_collect_to_vec",
+            "value": 831,
+            "range": "± 20",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_flat_map_small_inners",
+            "value": 3611,
+            "range": "± 92",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_map_filter",
+            "value": 824,
+            "range": "± 8",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_merge_two_sources",
+            "value": 1657,
+            "range": "± 21",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "local_scan_take",
+            "value": 210,
+            "range": "± 8",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "shared_map_filter",
+            "value": 1447,
+            "range": "± 19",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "subject_broadcast_ten_subscribers",
+            "value": 13907,
+            "range": "± 141",
             "unit": "ns/iter"
           }
         ]
